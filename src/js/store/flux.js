@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			contacts: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -15,28 +16,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getContacts: async () => {
+				 try {
+						const resp = await fetch("https://playground.4geeks.com/contact/agendas/cesar-amcolson/contacts", {
+						method: "GET",
+						headers: {
+							"Content-type": "application/json"
+						}}) 
+						if (!resp.ok) {
+							throw new Error(`error status: ${resp.status}`)
+						}
+						let data = await resp.json()
+						console.log(data)
+						setStore({contacts:data.contacts})
+						return getStore().contacts
+				 } catch (error) {
+					console.error("Error getting contacts:", error);
+				 }
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			createUser: async () => {
+					fetch("https://playground.4geeks.com/contact/agendas/cesar-amcolson", {
+					method: "POST",
+					headers: {
+						"Content-type": "application/json"
+					}
+				})
+				.then((response) => {
+					return response.json();
+				})
+				.catch((error) => {
+					console.error("Error creating user:", error);
 				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
 		}
 	};
