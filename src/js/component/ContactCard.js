@@ -10,18 +10,18 @@ export const ContactCard = ({ name, address, phone, email, onDeleteClick }) => {
                 </div>
                 <div className="col-12 col-sm-6 col-md-9 text-sm-left d-flex justify-content-between">
                     <div className="d-flex flex-column">
-                        <h5>{name}</h5>
-                        <div>
-                            <i className="fas fa-map-marker-alt text-muted mr-3"></i>
-                            <span className="text-muted">{address}</span>
+                        <h5 className="mx-4 my-2">{name}</h5>
+                        <div className="mb-2">
+                            <i className="fas fa-map-marker-alt fa-lg text-muted mr-3"></i>
+                            <span className="text-muted p-2">{address}</span>
                         </div>
-                        <div>
+                        <div className="mb-2">
                             <i className="fas fa-phone text-muted mr-3"></i>
-                            <span className="text-muted small">{phone}</span>
+                            <span className="text-muted small  p-2">{phone}</span>
                         </div>
-                        <div>
+                        <div className="mb-2">
                             <i className="fas fa-envelope text-muted mr-3"></i>
-                            <span className="text-muted small text-truncate">{email}</span>
+                            <span className="text-muted small text-truncate  p-2">{email}</span>
                         </div>
                     </div>
                     <div>
