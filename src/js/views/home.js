@@ -16,12 +16,9 @@ export const Home = () => {
 	return (
 		<div className="container">
 			<div>
-				<p className="text-right my-3">
-					<Link className="btn btn-success" to="/demo">Add new contact</Link>
-				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						<li>{contactItems}</li>
+						{contactItems}
 					</ul>
 				</div>
 			</div>

@@ -1,3 +1,5 @@
+import { AddContact } from "../views/demo";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {

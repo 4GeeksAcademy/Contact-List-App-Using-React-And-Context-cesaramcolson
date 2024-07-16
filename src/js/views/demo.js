@@ -1,43 +1,31 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
-import { Context } from "../store/appContext";
-
-import "../../styles/demo.css";
-
-export const Demo = () => {
-	const { store, actions } = useContext(Context);
-
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
-};
+export const AddContact = () => {
+        return (
+            <div className="container">
+                <div>
+                    <h1 className="text-center mt-5">Add a new contact</h1>
+                    <form>
+                        <div className="form-group">
+                            <label>Full Name</label>
+                            <input type="text" className="form-control" placeholder="Full Name" />
+                        </div>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <input type="email" className="form-control" placeholder="Enter email" />
+                        </div>
+                        <div className="form-group">
+                            <label>Phone</label>
+                            <input type="phone" className="form-control" placeholder="Enter phone" />
+                        </div>
+                        <div className="form-group">
+                            <label>Address</label>
+                            <input type="text" className="form-control" placeholder="Enter address" />
+                        </div>
+                        <button type="button" className="btn btn-primary form-control">save</button>
+                        <Link className="mt-3 w-100 text-center" to="/">or get back to contacts</Link>
+                    </form>
+                </div>
+            </div>
+        );
+    }
