@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             contacts: [],
             demo: []
         },
-		actions: {
+        actions: {
             getContacts: async () => {
                 try {
                     const resp = await fetch("https://playground.4geeks.com/contact/agendas/cesar-amcolson/contacts", {
@@ -41,22 +41,24 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error creating contact:", error);
                 }
             },
-			createUser: async () => {
-					fetch("https://playground.4geeks.com/contact/agendas/cesar-amcolson", {
-					method: "POST",
-					headers: {
-						"Content-type": "application/json"
-					}
-				})
-				.then((response) => {
-					return response.json();
-				})
-				.catch((error) => {
-					console.error("Error creating user:", error);
-				});
-			}
-		}
-	};
+            deleteContact: async (id) => {
+                try {
+                    const resp = await fetch(`https://playground.4geeks.com/contact/agendas/cesar-amcolson/contacts/${id}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-type": "application/json"
+                        }
+                    });
+                    if (!resp.ok) {
+                        throw new Error(`error status: ${resp.status}`);
+                    }
+                    await getActions().getContacts();
+                } catch (error) {
+                    console.error("Error deleting contact:", error);
+                }
+            }
+        }
+    };
 };
 
 export default getState;
