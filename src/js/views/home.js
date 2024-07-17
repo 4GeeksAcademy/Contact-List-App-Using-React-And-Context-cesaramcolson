@@ -43,6 +43,7 @@ export const Home = () => {
                                 phone={item.phone} 
                                 email={item.email} 
                                 onDeleteClick={() => openModal(item)}
+                                id={item.id}
                             />
                         ))}
                     </ul>
