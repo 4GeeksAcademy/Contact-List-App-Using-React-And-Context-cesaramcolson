@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-export const ContactCard = ({ name, address, phone, email, onDeleteClick }) => {
+export const ContactCard = ({ id, name, address, phone, email, onDeleteClick }) => {
     return (
         <li className="list-group-item">
             <div className="row w-100">
@@ -25,7 +26,7 @@ export const ContactCard = ({ name, address, phone, email, onDeleteClick }) => {
                         </div>
                     </div>
                     <div>
-                        <button className="btn" onClick={() => this.props.history.push('/edit')}><i className="fas fa-pencil-alt mr-3"></i></button>
+                        <Link to={`/edit/${id}`} className="btn"><i className="fas fa-pencil-alt mr-3"></i></Link>
                         <button className="btn" onClick={onDeleteClick}><i className="fas fa-trash-alt"></i></button>
                     </div>
                 </div>
@@ -35,6 +36,7 @@ export const ContactCard = ({ name, address, phone, email, onDeleteClick }) => {
 };
 
 ContactCard.propTypes = {
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
