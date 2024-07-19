@@ -1,8 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            contacts: [],
-            demo: []
+            contacts: []
         },
         actions: {
             userExists: async () => {
